@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AndroidProjekat.Register"
+             xmlns:local="clr-namespace:AndroidProjekat.ViewModels"
+             xmlns:dto="clr-namespace:AndroidProjekat.Business.DTO"             
+             Title="Register">
+    <ContentPage.BindingContext>
+        <local:RegisterViewModel/>
+        <!--<dto:CountryDto/>-->
+    </ContentPage.BindingContext>    
+    <ScrollView>
+        <VerticalStackLayout
+            WidthRequest="400"
+        Padding="30,0"
+        >
+
+            <Label
+            Text="Register form:"
+            Style="{StaticResource Headline}"
+            SemanticProperties.HeadingLevel="Level1" Margin="0,20"/>
+
+            <Entry Placeholder="Email" Text="{Binding Email.Value}" BackgroundColor="Salmon" Margin="0,0,14,0" />
+            <Label Text="{Binding Email.Error}" TextColor="Red" Margin="0,5" />            
+            
+            <Entry Placeholder="Username" Text="{Binding Username.Value}" BackgroundColor="Salmon" Margin="0,0,14,0" />
+            <Label Text="{Binding Username.Error}" TextColor="Red" Margin="0,5" />            
+            
+            <Entry Placeholder="Date of birth" Text="{Binding DateOfBirth.Value}" BackgroundColor="Salmon" Margin="0,0,14,0" />
+            <Label Text="{Binding DateOfBirth.Error}" TextColor="Red" Margin="0,5" />
+
+
+            <Picker Title="Choose Country"
+            ItemsSource="{Binding Countries}"
+            ItemDisplayBinding="{Binding Name}"  
+            SelectedItem="{Binding Country.Value}"
+                Margin="0,10"/>
+
+
+            <Picker Title="Choose gender"
+            ItemsSource="{Binding Genders}"
+            ItemDisplayBinding="{Binding Name}"  
+            SelectedItem="{Binding Gender.Value}"
+                Margin="0,10"/>
+
+
+            <Entry Placeholder="Password" IsPassword="True" Text="{Binding Password.Value}" BackgroundColor="Salmon" Margin="0,0,14,0"/>
+            <Label IsVisible="{Binding Password.HasError}" Text="{Binding Password.Error}" TextColor="Red" Margin="0,5" />
+
+            <Button
+            x:Name="RegisterButton"
+            IsEnabled="{Binding ButtonEnabled.Value}"
+            Text="Register" 
+            Command="{Binding RegisterCommand}"
+            SemanticProperties.Hint="Register button"
+            HorizontalOptions="Fill"
+                Margin="0,20"/>
+
+            <Label Text="Server error." IsVisible="{Binding ServerError.Value}" TextColor="Red" Margin="0,14"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

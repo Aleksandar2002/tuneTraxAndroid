@@ -1,0 +1,31 @@
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AndroidProjekat.Components.PlaylistCard"
+             x:Name="Self">
+
+    <VerticalStackLayout BindingContext="{Reference Self}" WidthRequest="400" Margin="0,12">
+        <HorizontalStackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Center" Margin="0,5" Background="#645DD7">
+            <HorizontalStackLayout HorizontalOptions="Center">
+                <Label Text="{Binding Name}" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"/>
+                <!--<Label Text="{Binding PlaylistId}" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"/>-->
+                <Label Text="{Binding AccessLevelText}" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"/>
+                <Button Text="Remove" Clicked="Button_Clicked" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"/>
+            </HorizontalStackLayout>
+
+        </HorizontalStackLayout>
+
+        <CollectionView ItemsSource="{Binding TracksFromServer}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <HorizontalStackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Center" Margin="0,5" Background="#645DD7">
+                        <HorizontalStackLayout HorizontalOptions="CenterAndExpand">
+                            <Label Text="{Binding Title}" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"/>
+                            <Label Text="{Binding ReleaseDate}" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"/>
+                            <Button Text="Remove track" Command="{Binding RemoveTrackCommand}" CommandParameter="{Binding Id}" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"/>
+                        </HorizontalStackLayout>
+                    </HorizontalStackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
+</ContentView>

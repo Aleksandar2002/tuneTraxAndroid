@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AndroidProjekat.Playlists"
+             xmlns:local="clr-namespace:AndroidProjekat.ViewModels"
+             xmlns:cmp="clr-namespace:AndroidProjekat.Components"
+             Title="Playlists">
+    <ContentPage.BindingContext>
+        <local:PlaylistsViewModel/>
+    </ContentPage.BindingContext>
+    <ScrollView>
+        <VerticalStackLayout WidthRequest="500"  Margin="0,12">
+            <Label 
+            Text="Playlists"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+
+            <Button Text="Refresh" Command="{Binding Refresh}" Margin="0,15"></Button>
+
+            <VerticalStackLayout HorizontalOptions="FillAndExpand" Margin="10,20">
+                <Label Margin="4,0" Text="Playlist name"/>
+                <Entry Placeholder="Playlist name" Text="{Binding PlaylistName.Value}" BackgroundColor="Salmon" Margin="0,0,14,0"/>
+                <Button Text="Add new Playlist" Margin="0,15" Command="{Binding AddNewPlaylist}"/>
+            </VerticalStackLayout>
+
+            <CollectionView ItemsSource="{Binding Playlists}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <cmp:PlaylistCard  PlaylistId="{Binding Id}" Name="{Binding Name}" AccessLevel="{Binding AccessLevel}" Tracks="{Binding Tracks}"/>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

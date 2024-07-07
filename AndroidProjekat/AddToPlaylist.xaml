@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AndroidProjekat.AddToPlaylist"
+             xmlns:local="clr-namespace:AndroidProjekat.ViewModels"
+             Title="AddToPlaylist">
+    <ContentPage.BindingContext>
+        <local:AddToPlaylistViewModel/>
+    </ContentPage.BindingContext>
+    <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Padding="10,15" BackgroundColor="#645DD7">
+        <Button Text="Go back" Clicked="Button_Clicked" Margin="0,14"/>
+        <!--<CollectionView ItemsSource="{Binding Playlists}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <HorizontalStackLayout>
+                        <Label Text="{Binding Name}"/>
+                        <CheckBox x:Name="pera"/>
+                    </HorizontalStackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>-->
+
+        <Picker Title="Choose playlist"
+            ItemsSource="{Binding Playlists}"
+            ItemDisplayBinding="{Binding Name}"  
+            SelectedItem="{Binding SelectedPlaylist.Value}"
+                Margin="0,10"/>
+
+        <Button Text="Save to playlist" Command="{Binding SaveTrackToPlaylist}"/>
+
+    </VerticalStackLayout>
+</ContentPage>

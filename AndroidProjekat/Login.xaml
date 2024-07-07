@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AndroidProjekat.Login"
+             xmlns:local="clr-namespace:AndroidProjekat.ViewModels"
+             Title="Login">
+    <ContentPage.BindingContext>
+        <local:LoginViewModel/>
+    </ContentPage.BindingContext>
+    <ScrollView>
+        <VerticalStackLayout
+            WidthRequest="400"
+        Padding="30,0"
+        >
+
+            <Label
+            Text="Login form:"
+            Style="{StaticResource Headline}"
+            SemanticProperties.HeadingLevel="Level1" Margin="0,20"/>
+
+            <Entry Placeholder="Email" Text="{Binding Email.Value}" BackgroundColor="Salmon" Margin="0,0,14,0" />
+            <Label Text="{Binding Email.Error}" TextColor="Red" Margin="0,5" />
+
+            <Entry Placeholder="Password" IsPassword="True" Text="{Binding Password.Value}" BackgroundColor="Salmon" Margin="0,0,14,0"/>
+            <Label IsVisible="{Binding Password.HasError}" Text="{Binding Password.Error}" TextColor="Red" Margin="0,5" />
+
+            <Button
+            x:Name="LoginButton"
+            IsEnabled="{Binding ButtonEnabled.Value}"
+            Text="Login" 
+            Command="{Binding LoginCommand}"
+            SemanticProperties.Hint="Login button"
+            HorizontalOptions="Fill"
+                Margin="0,20"/>
+
+            <Button
+            Text="Go to register page" 
+            Clicked="Button_Clicked"
+            SemanticProperties.Hint="Go to register"
+            HorizontalOptions="Fill"
+                Margin="0,20"/>
+
+            <Label Text="Invalid credentials." IsVisible="{Binding InvalidCredentials.Value}" TextColor="Red" Margin="0,14"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

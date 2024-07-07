@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AndroidProjekat.TrackList"
+                          xmlns:local="clr-namespace:AndroidProjekat.ViewModels"
+             xmlns:cmp="clr-namespace:AndroidProjekat.Components"
+             Title="TrackList">
+    <ContentPage.BindingContext>
+        <local:TrackListViewModel/>
+    </ContentPage.BindingContext>
+    <ScrollView>
+        <VerticalStackLayout>
+            <Label 
+            Text="Search tracks here:"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" Margin="0,0,0,10" />
+
+            <SearchBar  Text="{Binding Keyword.Value}" Placeholder="Search by..."/>
+
+            <!--<Button Text="Refresh page" Command="{Binding RefreshPageCommand}" Margin="0,20" TextColor="#333" BackgroundColor="#645DD7" />-->
+
+            <CollectionView ItemsSource="{Binding Tracks}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <cmp:TrackCard TrackId="{Binding Id}" Title="{Binding Title}" CoverImage="{Binding CoverImage}" ReleaseDate="{Binding ReleaseDate}" Artists="{Binding Artists}" Album="{Binding Album}" Genres="{Binding Genres}"/>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <!--<Button Text="Add new" FontSize="Small" Command="{Binding AddNewPostCommand}" />-->
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

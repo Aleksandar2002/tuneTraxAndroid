@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AndroidProjekat.TrackDetails"
+             xmlns:local="clr-namespace:AndroidProjekat.ViewModels"
+             Title="TrackDetails">
+
+    <ContentPage.BindingContext>
+        <local:TrackDetailsViewModel/>
+    </ContentPage.BindingContext>
+    <VerticalStackLayout   BackgroundColor="#645DD7" WidthRequest="400" Padding="0,30" VerticalOptions="Center" HorizontalOptions="Center">
+        <Button Text="Go Back" Command="{Binding GoBackCommand}" Margin="0,20"/>
+
+        <Image Source="{Binding Track.CoverImage, StringFormat='http://localhost:5001/{0}'}" HeightRequest="120" Margin="0,0,0,20"/>
+
+        <HorizontalStackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="Center" Margin="0,5">
+            <Label Text="Title:" />
+            <Label Text="{Binding Track.Title}" />
+        </HorizontalStackLayout>
+
+        <HorizontalStackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="Center" Margin="0,5">
+            <Label Text="Duration:" />
+            <Label Text="{Binding Track.Duration}" />
+        </HorizontalStackLayout>
+
+        <HorizontalStackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="Center" Margin="0,5">
+            <Label Text="Release date:" />
+            <Label Text="{Binding Track.ReleaseDate}" />
+        </HorizontalStackLayout>
+
+        <HorizontalStackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="Center" Margin="0,5">
+            <Label Text="Album: " />
+            <Label Text="{Binding Track.Album.Name}" />
+        </HorizontalStackLayout>
+
+        <HorizontalStackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="Center" Margin="0,5">
+            <Label Text="Genres: "></Label>
+            <Label Text="  "></Label>
+            <CollectionView ItemsSource="{Binding Track.Genres}">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Horizontal" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <HorizontalStackLayout>
+                            <Label Text="{Binding Name}" />
+                            <Label Text=", " />
+                        </HorizontalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </HorizontalStackLayout>
+
+        <HorizontalStackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="Center" Margin="0,5">
+            <Label Text="Artists: "></Label>
+            <Label Text="  "></Label>
+            <CollectionView ItemsSource="{Binding Track.Artists}">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Horizontal" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <HorizontalStackLayout>
+                            <Label Text="{Binding Name}" />
+                            <Label Text=", " />
+                        </HorizontalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </HorizontalStackLayout>
+
+
+    </VerticalStackLayout>
+</ContentPage>
